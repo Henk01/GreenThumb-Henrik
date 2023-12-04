@@ -7,6 +7,7 @@ namespace GreenThumb_Henrik.Models
         [Key]
         public int Id { get; set; }
         public string Name { get; set; } = null!;
+        // Comment
         public List<InstructionModel> Instruction { get; set; } = new();
     }
 }
