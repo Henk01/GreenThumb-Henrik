@@ -28,13 +28,14 @@
         <ListView Name="lstPlants" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="10"/>
 
         <Label Grid.Column="1" Grid.Row="1" Content="Plants" FontSize="50"/>
-        <Label Content="Search:" Grid.Column="4" Grid.Row="1" FontSize="40" VerticalAlignment="Bottom"/>
+        <Label Content="Search:" Grid.Column="3" Grid.Row="1" FontSize="40"/>
 
-        <Button Name="btnAdd" Grid.Column="4" Grid.Row="4" Content="Add" FontSize="40" Height="60" Width="100"/>
-        <Button Name="btnInfo" Grid.Column="5" Grid.Row="4" Content="Info" FontSize="35" Height="60" Width="100"/>
-        <Button Name="btnDlt" Grid.Column="4" Grid.Row="3" Content="Delete" FontSize="35" Height="60" Width="115"/>
-        <Button Name="btnLogout" Grid.Column="5" Grid.Row="3" Content="Log out" FontSize="30" Height="60" Width="110"/>
+        <Button Name="btnAdd" Grid.Column="4" Grid.Row="4" Content="Add" FontSize="40" Height="60" Width="100" Click="btnAdd_Click"/>
+        <Button Name="btnInfo" Grid.Column="5" Grid.Row="4" Content="Info" FontSize="35" Height="60" Width="100" Click="btnInfo_Click"/>
+        <Button Name="btnDlt" Grid.Column="4" Grid.Row="3" Content="Delete" FontSize="35" Height="60" Width="115" Click="btnDlt_Click"/>
+        <Button Name="btnLogout" Grid.Column="5" Grid.Row="3" Content="Log out" FontSize="30" Height="60" Width="110" Click="btnLogout_Click"/>
+        <Button Name="btnGarden" Grid.Column="4" Grid.Row="2" Content="Show garden" Grid.ColumnSpan="2" FontSize="30" Width="200" Height="70" Click="btnGarden_Click"/>
 
-        <TextBox Name="txtPlant" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Margin="15" Height="50"/>
+        <TextBox Name="txtPlant" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2" Margin="15" Height="50" TextChanged="txtPlant_TextChanged"/>
     </Grid>
 </Window>

@@ -8,6 +8,6 @@ namespace GreenThumb_Henrik.Models
         public int Id { get; set; }
         public string Name { get; set; } = null!;
         public int PlantId { get; set; }
-        public PlantModel Plant { get; set; } = null!;
+        public List<PlantModel> Plants { get; set; } = null!;
     }
 }

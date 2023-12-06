@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GreenThumb_Henrik.Database;
+using GreenThumb_Henrik.Managers;
+using GreenThumb_Henrik.Models;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace GreenThumb_Henrik
 {
@@ -22,6 +13,31 @@ namespace GreenThumb_Henrik
         public SignUpWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnReturn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
+
+        private void btnSignup_Click(object sender, RoutedEventArgs e)
+        {
+            string username = txtUsername.Text;
+            string plainPassword = txtPassword.Text;
+
+            string encryptedPassword = PasswordManager.PasswordHash(plainPassword);
+
+            UserModel? user = new(username, encryptedPassword);
+
+            UserRepository repository = new UserRepository();
+
+            repository.AddUser(user);
+
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
     }
 }

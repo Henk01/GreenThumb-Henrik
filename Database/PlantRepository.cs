@@ -1,22 +1,56 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GreenThumb_Henrik.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GreenThumb_Henrik.Database
 {
-    internal class PlantRepository<T> where T : class
+    internal class PlantRepository
     {
-        private readonly AppDbContext _context;
-        private readonly DbSet<T> _dbSet;
 
-        public PlantRepository(AppDbContext context)
+        public PlantRepository()
         {
-            _context = context;
-            _dbSet = context.Set<T>();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync() => await _dbSet.ToListAsync();
-        public async Task<T> GetByIdAsync(int id) => await _dbSet.FindAsync(id);
-        public async Task AddAsync(T entity) => await _dbSet.AddAsync(entity);
-        public async Task RemoveAsync(T entity) => _dbSet.Remove(entity);
-        public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
+        public void AddPlant(PlantModel plant)
+        {
+            using AppDbContext context = new();
+            context.Plants.Add(plant);
+            context.SaveChanges();
+        }
+
+        public PlantModel GetplantById(int plantID)
+        {
+            using AppDbContext context = new();
+            return context.Plants.Find(plantID);
+        }
+
+        //public PlantModel GetplantByName(string plant)
+        //{
+        //    using AppDbContext context = new();
+        //    return context.Plants.FirstOrDefault(p => p.plant == plant);
+        //}
+
+        public List<PlantModel> GetAllPlants()
+        {
+            using AppDbContext context = new();
+            return context.Plants.ToList();
+        }
+
+        public void UpdatePlant(PlantModel plant)
+        {
+            using AppDbContext context = new();
+            context.Entry(plant).State = EntityState.Modified;
+            context.SaveChanges();
+        }
+
+        public void DeletePlant(int plantID)
+        {
+            using AppDbContext context = new();
+            var plant = context.Plants.Find(plantID);
+            if (plant != null)
+            {
+                context.Plants.Remove(plant);
+                context.SaveChanges();
+            }
+        }
     }
 }

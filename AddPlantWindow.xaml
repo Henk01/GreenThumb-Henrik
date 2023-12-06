@@ -14,6 +14,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -22,10 +23,19 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        
-        
-        
+
+        <Label Content="Add Plant" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="50" />
+        <Label Content="PLANT NAME:" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <Label Content="INSTRUCTIONS:" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+
+        <TextBox Name="txtPlant" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" Height="50" VerticalAlignment="Bottom"/>
+        <TextBox Name="txtInstruction" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3" Height="65" />
+
+        <Button Name="btnAdd" Content="Save" Grid.Column="1" Grid.Row="5" FontSize="35" Height="50" Width="100" Click="btnAdd_Click"/>
+        <Button Name="btnReturn" Content="Return" Grid.Column="2" Grid.Row="5" FontSize="35" Height="50" Click="btnReturn_Click"/>
+
     </Grid>
 </Window>
