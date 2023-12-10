@@ -25,11 +25,11 @@ namespace GreenThumb_Henrik
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             string username = txtUsername.Text;
-            string password = txtPassword.Text;
+            string password = txtPassword.Password;
 
             UserRepository userRepository = new UserRepository();
 
-            UserModel? user = userRepository.GetUserByName(username);
+            User? user = userRepository.GetUserByName(username);
 
             if (user == null)
             {

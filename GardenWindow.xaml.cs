@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GreenThumb_Henrik.Database;
+using GreenThumb_Henrik.Managers;
+using GreenThumb_Henrik.Models;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace GreenThumb_Henrik
 {
@@ -22,6 +13,29 @@ namespace GreenThumb_Henrik
         public GardenWindow()
         {
             InitializeComponent();
+            GardenRepository gardenRepository = new GardenRepository();
+            Garden garden = gardenRepository.GetGardenById(UserManager.User.Garden.Id);
+
+            lstGarden.ItemsSource = garden.Plants;
+        }
+
+        private void btnReturn_Click(object sender, RoutedEventArgs e)
+        {
+            PlantWindow plantWindow = new PlantWindow();
+            plantWindow.Show();
+            this.Close();
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstGarden.SelectedItem == null)
+            {
+                MessageBox.Show("You must select a plant from the list");
+                return;
+            }
+            GardenRepository gardenRepository = new GardenRepository();
+            Plant? plant = (Plant)lstGarden.SelectedItem;
+            gardenRepository.RemovePlantFromGarden(UserManager.User.Garden.Id, plant.Id);
         }
     }
 }

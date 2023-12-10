@@ -1,4 +1,5 @@
-﻿using GreenThumb_Henrik.Models;
+﻿using GreenThumb_Henrik.Managers;
+using GreenThumb_Henrik.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace GreenThumb_Henrik.Database
@@ -10,32 +11,32 @@ namespace GreenThumb_Henrik.Database
         {
         }
 
-        public void AddUser(UserModel user)
+        public void AddUser(User user)
         {
             using AppDbContext context = new();
             context.Users.Add(user);
             context.SaveChanges();
         }
 
-        public UserModel GetUserById(int userId)
+        public User GetUserById(int userId)
         {
             using AppDbContext context = new();
             return context.Users.Find(userId);
         }
 
-        public UserModel GetUserByName(string username)
+        public User GetUserByName(string username)
         {
             using AppDbContext context = new();
-            return context.Users.FirstOrDefault(u => u.Username == username);
+            return context.Users.Include(x => x.Garden).ThenInclude(g => g.Plants).FirstOrDefault(u => u.Username == username);
         }
 
-        public List<UserModel> GetAllUsers()
+        public List<User> GetAllUsers()
         {
             using AppDbContext context = new();
             return context.Users.ToList();
         }
 
-        public void UpdateUser(UserModel user)
+        public void UpdateUser(User user)
         {
             using AppDbContext context = new();
             context.Entry(user).State = EntityState.Modified;
@@ -51,6 +52,17 @@ namespace GreenThumb_Henrik.Database
                 context.Users.Remove(user);
                 context.SaveChanges();
             }
+        }
+
+
+        public void AddPlantToGarden(Plant plant)
+        {
+            using AppDbContext context = new();
+            User user = context.Users.Include(x => x.Garden).ThenInclude(g => g.Plants).FirstOrDefault(u => u.Id == UserManager.User.Id);
+
+            user.Garden.Plants.Add(plant);
+            UserManager.User.Garden.Plants.Add(plant);
+            context.SaveChanges();
         }
     }
 }

@@ -10,32 +10,26 @@ namespace GreenThumb_Henrik.Database
         {
         }
 
-        public void AddPlant(PlantModel plant)
+        public void AddPlant(Plant plant)
         {
             using AppDbContext context = new();
             context.Plants.Add(plant);
             context.SaveChanges();
         }
 
-        public PlantModel GetplantById(int plantID)
+        public Plant GetplantById(int plantID)
         {
             using AppDbContext context = new();
             return context.Plants.Find(plantID);
         }
 
-        //public PlantModel GetplantByName(string plant)
-        //{
-        //    using AppDbContext context = new();
-        //    return context.Plants.FirstOrDefault(p => p.plant == plant);
-        //}
-
-        public List<PlantModel> GetAllPlants()
+        public List<Plant> GetAllPlants()
         {
             using AppDbContext context = new();
-            return context.Plants.ToList();
+            return context.Plants.Include(p => p.Instructions).ToList();
         }
 
-        public void UpdatePlant(PlantModel plant)
+        public void UpdatePlant(Plant plant)
         {
             using AppDbContext context = new();
             context.Entry(plant).State = EntityState.Modified;

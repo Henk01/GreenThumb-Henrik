@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GreenThumb_Henrik"
         mc:Ignorable="d"
-        Title="PlantDetailsWindow" Height="450" Width="800" Background="BlanchedAlmond">
+        Title="PlantDetailsWindow" Height="696" Width="800" Background="BlanchedAlmond">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -28,13 +28,25 @@
         </Grid.RowDefinitions>
 
         <Label Content="Plant Info" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="50"/>
-        <Label Content="Plant:" Grid.Column="1" Grid.Row="2" FontSize="40" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
-        <Label Content="Instructions:" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" FontSize="40" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <Label Content="Plant:" Grid.Column="1" Grid.Row="2" FontSize="40" Margin="0,20,20,19"/>
+        <Label Content="Instructions:" Grid.Column="3" Grid.Row="2" FontSize="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="254" Grid.ColumnSpan="3" Margin="89,20,0,0"/>
 
-        <TextBox Name="txtPlant" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Height="60" VerticalAlignment="Bottom"/>
-        <TextBox Name="txtInstruction" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="10" TextWrapping="Wrap"/>
-
-        <Button Name="btnReturn" Grid.Column="1" Grid.Row="5" Content="Return" FontSize="30" Height="60" Click="btnReturn_Click"/>
-        <Button Name="btnAddToGarden" Grid.Column="3" Grid.Row="5" Content="Add to garden" Grid.ColumnSpan="2" FontSize="30"/>
+        <TextBox Name="txtPlant" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Height="60" VerticalAlignment="Top" Margin="0,83,0,0" Grid.RowSpan="2"/>
+        <ListView Name="lstInstructions" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="3" Margin="89,83,36,40">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Description"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <!--<ListView Name="lstPlants" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Plant Name"/>
+                </GridView>
+            </ListView.View>
+        </ListView>-->
+        <Button Name="btnReturn" Grid.Column="5" Grid.Row="5" Content="Return" FontSize="30" Click="btnReturn_Click" Grid.ColumnSpan="3" Margin="126,64,19,0"/>
+        <Button Name="btnAddToGarden" Grid.Column="1" Grid.Row="5" Content="Add to garden" Grid.ColumnSpan="2" FontSize="30" Margin="0,64,43,0" Click="btnAddToGarden_Click"/>
     </Grid>
 </Window>

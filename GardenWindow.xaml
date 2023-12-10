@@ -26,9 +26,15 @@
 
         <Label Content="Garden" Grid.Column="1" Grid.Row="1" FontSize="45"/>
 
-        <ListView Name="lstGarden" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+        <ListView Name="lstGarden" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="3">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Plant"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
-        <Button Name="btnReturn" Grid.Column="1" Grid.Row="2" Content="Return" FontSize="40" Height="70" Width="150"/>
-        <Button Name="btnDelete" Grid.Column="1" Grid.Row="4" Content="Delete" FontSize="40" Height="70" Width="150"/>
+        <Button Name="btnReturn" Grid.Column="1" Grid.Row="2" Content="Return" FontSize="40" Height="70" Width="150" Click="btnReturn_Click"/>
+        <Button Name="btnDelete" Grid.Column="1" Grid.Row="4" Content="Delete" FontSize="40" Height="70" Width="150" Click="btnDelete_Click"/>
     </Grid>
 </Window>

@@ -29,8 +29,8 @@
         <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Content="Username:" FontSize="40" HorizontalAlignment="Center"/>
         <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Content="Password:" FontSize="40" HorizontalAlignment="Center"/>
 
-        <TextBox Name="txtUsername" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" Height="60"/>
-        <TextBox Name="txtPassword" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2" Height="60"/>
+        <TextBox Name="txtUsername" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" Height="60" Text="Henrik"/>
+        <PasswordBox Name="txtPassword" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2" Height="60"/>
 
         <Button Name="btnLogin" Grid.Column="1" Grid.Row="4" Content="Login" FontSize="35" Height="60" Width="100" Click="btnLogin_Click"/>
         <Button Name="btnSignup" Grid.Column="2" Grid.Row="4" Content="Sign up" FontSize="35" Height="60" Width="130" Click="btnSignup_Click"/>

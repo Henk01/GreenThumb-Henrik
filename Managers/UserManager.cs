@@ -4,6 +4,6 @@ namespace GreenThumb_Henrik.Managers
 {
     public static class UserManager
     {
-        public static UserModel User { get; set; }
+        public static User User { get; set; }
     }
 }

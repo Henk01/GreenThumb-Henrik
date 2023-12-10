@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GreenThumb_Henrik.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231206181055_Init")]
-    partial class Init
+    [Migration("20231210041959_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace GreenThumb_Henrik.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("GardenModelPlantModel", b =>
+            modelBuilder.Entity("GardenPlant", b =>
                 {
                     b.Property<int>("GardensId")
                         .HasColumnType("int");
@@ -36,10 +36,10 @@ namespace GreenThumb_Henrik.Migrations
 
                     b.HasIndex("PlantsId");
 
-                    b.ToTable("GardenModelPlantModel");
+                    b.ToTable("GardenPlant");
                 });
 
-            modelBuilder.Entity("GreenThumb_Henrik.Models.GardenModel", b =>
+            modelBuilder.Entity("GreenThumb_Henrik.Models.Garden", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -55,10 +55,10 @@ namespace GreenThumb_Henrik.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("GardenModel");
+                    b.ToTable("Gardens");
                 });
 
-            modelBuilder.Entity("GreenThumb_Henrik.Models.GardenPlantModel", b =>
+            modelBuilder.Entity("GreenThumb_Henrik.Models.Instruction", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -66,71 +66,173 @@ namespace GreenThumb_Henrik.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("GardenId")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PlantId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GardenId");
-
                     b.HasIndex("PlantId");
 
-                    b.ToTable("GardenPlantModel");
-                });
-
-            modelBuilder.Entity("GreenThumb_Henrik.Models.InstructionModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Instructions");
+                    b.ToTable("Instruction");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Name = "Give water"
+                            Name = "Give water",
+                            PlantId = 3
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Give sunlight"
+                            Name = "Give sunlight",
+                            PlantId = 1
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Repot plant when its gotten bigger"
+                            Name = "Repot plant when its gotten bigger",
+                            PlantId = 3
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Distribute pesticide"
+                            Name = "Distribute pesticide",
+                            PlantId = 3
                         },
                         new
                         {
                             Id = 5,
-                            Name = "Monitor temperature and humidity"
+                            Name = "Monitor temperature and humidity",
+                            PlantId = 3
                         },
                         new
                         {
                             Id = 6,
-                            Name = "Provide support so plant stays upright"
+                            Name = "Provide support so plant stays upright",
+                            PlantId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Repot plant when its gotten bigger",
+                            PlantId = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Repot plant when its gotten bigger",
+                            PlantId = 12
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Distribute pesticide",
+                            PlantId = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Distribute pesticide",
+                            PlantId = 5
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Provide support so plant stays upright",
+                            PlantId = 4
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "Give water",
+                            PlantId = 5
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "Give sunlight",
+                            PlantId = 5
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "Monitor temperature and humidity",
+                            PlantId = 5
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "Give sunlight",
+                            PlantId = 6
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "Monitor Temperature and humidity",
+                            PlantId = 7
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Name = "Give water",
+                            PlantId = 8
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Name = "Distribute pesticide",
+                            PlantId = 8
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Name = "Give water",
+                            PlantId = 9
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Name = "Monitor temperature and humidity",
+                            PlantId = 9
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Name = "Give sunlight",
+                            PlantId = 10
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Name = "Distribute pesticide",
+                            PlantId = 10
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Name = "Give water",
+                            PlantId = 11
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Name = "Give sunlight",
+                            PlantId = 12
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Name = "Distribute pesticide",
+                            PlantId = 12
                         });
                 });
 
-            modelBuilder.Entity("GreenThumb_Henrik.Models.PlantModel", b =>
+            modelBuilder.Entity("GreenThumb_Henrik.Models.Plant", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -138,16 +240,11 @@ namespace GreenThumb_Henrik.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("InstructionId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("InstructionId");
 
                     b.ToTable("Plants");
 
@@ -155,78 +252,66 @@ namespace GreenThumb_Henrik.Migrations
                         new
                         {
                             Id = 1,
-                            InstructionId = 1,
                             Name = "Oak"
                         },
                         new
                         {
                             Id = 2,
-                            InstructionId = 2,
                             Name = "Dandelion"
                         },
                         new
                         {
                             Id = 3,
-                            InstructionId = 3,
                             Name = "Venus Flytrap"
                         },
                         new
                         {
                             Id = 4,
-                            InstructionId = 4,
                             Name = "Sunflower"
                         },
                         new
                         {
                             Id = 5,
-                            InstructionId = 5,
                             Name = "Hemp"
                         },
                         new
                         {
                             Id = 6,
-                            InstructionId = 6,
                             Name = "Barrel Cactus"
                         },
                         new
                         {
                             Id = 7,
-                            InstructionId = 1,
                             Name = "Bamboo"
                         },
                         new
                         {
                             Id = 8,
-                            InstructionId = 2,
                             Name = "Wheat"
                         },
                         new
                         {
                             Id = 9,
-                            InstructionId = 3,
                             Name = "Spider Plant"
                         },
                         new
                         {
                             Id = 10,
-                            InstructionId = 4,
                             Name = "Strawberry"
                         },
                         new
                         {
                             Id = 11,
-                            InstructionId = 5,
                             Name = "Jade Plant"
                         },
                         new
                         {
                             Id = 12,
-                            InstructionId = 6,
                             Name = "Banana"
                         });
                 });
 
-            modelBuilder.Entity("GreenThumb_Henrik.Models.UserModel", b =>
+            modelBuilder.Entity("GreenThumb_Henrik.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -247,78 +332,49 @@ namespace GreenThumb_Henrik.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("GardenModelPlantModel", b =>
+            modelBuilder.Entity("GardenPlant", b =>
                 {
-                    b.HasOne("GreenThumb_Henrik.Models.GardenModel", null)
+                    b.HasOne("GreenThumb_Henrik.Models.Garden", null)
                         .WithMany()
                         .HasForeignKey("GardensId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GreenThumb_Henrik.Models.PlantModel", null)
+                    b.HasOne("GreenThumb_Henrik.Models.Plant", null)
                         .WithMany()
                         .HasForeignKey("PlantsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("GreenThumb_Henrik.Models.GardenModel", b =>
+            modelBuilder.Entity("GreenThumb_Henrik.Models.Garden", b =>
                 {
-                    b.HasOne("GreenThumb_Henrik.Models.UserModel", "User")
+                    b.HasOne("GreenThumb_Henrik.Models.User", "User")
                         .WithOne("Garden")
-                        .HasForeignKey("GreenThumb_Henrik.Models.GardenModel", "UserId")
+                        .HasForeignKey("GreenThumb_Henrik.Models.Garden", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("GreenThumb_Henrik.Models.GardenPlantModel", b =>
+            modelBuilder.Entity("GreenThumb_Henrik.Models.Instruction", b =>
                 {
-                    b.HasOne("GreenThumb_Henrik.Models.GardenModel", "Garden")
-                        .WithMany("GardenPlants")
-                        .HasForeignKey("GardenId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GreenThumb_Henrik.Models.PlantModel", "Plant")
-                        .WithMany("GardenPlants")
+                    b.HasOne("GreenThumb_Henrik.Models.Plant", "Plant")
+                        .WithMany("Instructions")
                         .HasForeignKey("PlantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Garden");
-
                     b.Navigation("Plant");
                 });
 
-            modelBuilder.Entity("GreenThumb_Henrik.Models.PlantModel", b =>
+            modelBuilder.Entity("GreenThumb_Henrik.Models.Plant", b =>
                 {
-                    b.HasOne("GreenThumb_Henrik.Models.InstructionModel", "Instruction")
-                        .WithMany("Plants")
-                        .HasForeignKey("InstructionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Instruction");
+                    b.Navigation("Instructions");
                 });
 
-            modelBuilder.Entity("GreenThumb_Henrik.Models.GardenModel", b =>
-                {
-                    b.Navigation("GardenPlants");
-                });
-
-            modelBuilder.Entity("GreenThumb_Henrik.Models.InstructionModel", b =>
-                {
-                    b.Navigation("Plants");
-                });
-
-            modelBuilder.Entity("GreenThumb_Henrik.Models.PlantModel", b =>
-                {
-                    b.Navigation("GardenPlants");
-                });
-
-            modelBuilder.Entity("GreenThumb_Henrik.Models.UserModel", b =>
+            modelBuilder.Entity("GreenThumb_Henrik.Models.User", b =>
                 {
                     b.Navigation("Garden")
                         .IsRequired();

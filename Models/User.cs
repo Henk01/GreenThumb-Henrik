@@ -2,15 +2,15 @@
 
 namespace GreenThumb_Henrik.Models
 {
-    public class UserModel
+    public class User
     {
         [Key]
         public int Id { get; set; }
         public string Username { get; set; } = null!;
         public string Password { get; set; } = null!;
-        public GardenModel Garden { get; set; } = new();
+        public Garden Garden { get; set; } = new();
 
-        public UserModel(string username, string password)
+        public User(string username, string password)
         {
             Username = username;
             Password = password;

@@ -25,7 +25,13 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <ListView Name="lstPlants" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="10"/>
+        <ListView Name="lstPlants" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="10" IsManipulationEnabled="True">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Plant Name"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
         <Label Grid.Column="1" Grid.Row="1" Content="Plants" FontSize="50"/>
         <Label Content="Search:" Grid.Column="3" Grid.Row="1" FontSize="40"/>

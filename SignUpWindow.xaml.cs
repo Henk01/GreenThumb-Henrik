@@ -25,13 +25,24 @@ namespace GreenThumb_Henrik
         private void btnSignup_Click(object sender, RoutedEventArgs e)
         {
             string username = txtUsername.Text;
-            string plainPassword = txtPassword.Text;
+            string plainPassword = txtPassword.Password;
 
-            string encryptedPassword = PasswordManager.PasswordHash(plainPassword);
-
-            UserModel? user = new(username, encryptedPassword);
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(plainPassword))
+                MessageBox.Show("You must provide a username and password.");
 
             UserRepository repository = new UserRepository();
+
+            User IsExistingUser = repository.GetUserByName(username);
+
+            if (IsExistingUser != null)
+            {
+                MessageBox.Show("A user with that username does already exist. Try with another one!");
+                return;
+            }
+            string encryptedPassword = PasswordManager.PasswordHash(plainPassword);
+
+            User? user = new(username, encryptedPassword);
+
 
             repository.AddUser(user);
 

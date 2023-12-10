@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GreenThumb_Henrik"
         mc:Ignorable="d"
-        Title="AddPlantWindow" Height="450" Width="800" Background="Azure">
+        Title="AddPlantWindow" Height="604" Width="859" Background="Azure">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -28,14 +28,28 @@
         </Grid.RowDefinitions>
 
         <Label Content="Add Plant" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="50" />
-        <Label Content="PLANT NAME:" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
-        <Label Content="INSTRUCTIONS:" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <Label Content="PLANT NAME:" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,60,64" Grid.RowSpan="2"/>
+        <Label Content="INSTRUCTIONS:" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="3" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,120,64" Grid.RowSpan="2"/>
 
-        <TextBox Name="txtPlant" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" Height="50" VerticalAlignment="Bottom"/>
-        <TextBox Name="txtInstruction" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3" Height="65" />
+        <TextBox Name="txtPlant" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Height="50" VerticalAlignment="Bottom" Margin="0,0,128,9"/>
+        <TextBox Name="txtInstruction" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="3" Margin="64,55,10,9" />
+        <ListView Name="lstTempInstructions" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" Margin="64,10,0,30" Grid.RowSpan="3">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" />
+                        
+                        <Button Name="btnCancel" BorderThickness="0" Content="X" Width="20" Height="20" Click="btn_RemoveNewInstruction_Click">
+                            
+                        </Button>
 
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Button Name="btnAdd" Content="Save" Grid.Column="1" Grid.Row="5" FontSize="35" Height="50" Width="100" Click="btnAdd_Click"/>
         <Button Name="btnReturn" Content="Return" Grid.Column="2" Grid.Row="5" FontSize="35" Height="50" Click="btnReturn_Click"/>
+        <Button Name="btnAddInstruction" Content="Add" Grid.Column="5" Grid.Row="2" FontSize="35" Click="btnAddNewInstruction_Click" Grid.ColumnSpan="2" Margin="136,55,0,10"/>
 
     </Grid>
 </Window>
